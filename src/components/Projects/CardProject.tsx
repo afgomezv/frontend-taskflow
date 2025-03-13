@@ -1,14 +1,28 @@
 import { Fragment } from "react";
+import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import { Menu, Transition } from "@headlessui/react";
 import { EllipsisVerticalIcon } from "@heroicons/react/20/solid";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Project } from "@/types/index";
-import { Link } from "react-router-dom";
+import { deleteProject } from "@/api/ProjectApi";
 
 type CardProjectProps = {
   project: Project;
 };
 
 export default function CardProject({ project }: CardProjectProps) {
+  const queryClient = useQueryClient();
+  const { mutate } = useMutation({
+    mutationFn: deleteProject,
+    onSuccess: (data) => {
+      toast.success(data.message);
+      queryClient.invalidateQueries({ queryKey: ["projects"] });
+    },
+    onError: (error) => {
+      toast.error(error.message);
+    },
+  });
   return (
     <>
       <ul
@@ -67,7 +81,9 @@ export default function CardProject({ project }: CardProjectProps) {
                     <button
                       type="button"
                       className="block px-3 py-1 text-sm leading-6 text-red-500"
-                      onClick={() => {}}
+                      onClick={() => {
+                        mutate(project._id);
+                      }}
                     >
                       Eliminar Proyecto
                     </button>
