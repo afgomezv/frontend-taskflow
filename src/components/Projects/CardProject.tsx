@@ -57,7 +57,7 @@ export default function CardProject({ project }: CardProjectProps) {
                   </Menu.Item>
                   <Menu.Item>
                     <Link
-                      to={``}
+                      to={`/projects/${project._id}/create`}
                       className="block px-3 py-1 text-sm leading-6 text-gray-900"
                     >
                       Editar Proyecto
