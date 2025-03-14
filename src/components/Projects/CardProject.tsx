@@ -33,7 +33,7 @@ export default function CardProject({ project }: CardProjectProps) {
           <div className="flex min-w-0 gap-x-4">
             <div className="min-w-0 flex-auto space-y-2">
               <Link
-                to={``}
+                to={`/projects/${project._id}`}
                 className="text-solar-amber cursor-pointer hover:underline text-3xl font-bold"
               >
                 {project.projectName}
@@ -63,7 +63,7 @@ export default function CardProject({ project }: CardProjectProps) {
                 <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none">
                   <Menu.Item>
                     <Link
-                      to={``}
+                      to={`/projects/${project._id}`}
                       className="block px-3 py-1 text-sm leading-6 text-gray-900"
                     >
                       Ver Proyecto
@@ -71,7 +71,7 @@ export default function CardProject({ project }: CardProjectProps) {
                   </Menu.Item>
                   <Menu.Item>
                     <Link
-                      to={`/projects/${project._id}/create`}
+                      to={`/projects/${project._id}/edit`}
                       className="block px-3 py-1 text-sm leading-6 text-gray-900"
                     >
                       Editar Proyecto
