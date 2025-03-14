@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { getProjectById } from "@/api/ProjectApi";
 import AddTaskModal from "@/components/tasks/AddTaskModal";
+import TaskList from "@/components/tasks/TaskList";
 
 export default function ProjectDetailsView() {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ export default function ProjectDetailsView() {
   if (data)
     return (
       <>
-        <h1 className="text-5xl font-black text-solar-amber">
+        <h1 className="text-5xl font-black text-ocean-deep">
           {data.projectName}
         </h1>
         <p className="text-2xl font-light text-gray-500 mt-5">
@@ -34,6 +35,7 @@ export default function ProjectDetailsView() {
             Agregar Tarea
           </button>
         </nav>
+        <TaskList tasks={data.tasks} />
         <AddTaskModal />
       </>
     );

@@ -1,10 +1,10 @@
+import { isAxiosError } from "axios";
 import api from "@/lib/axios";
 import {
   dashboardProjectSchema,
   Project,
   ProjectFormData,
 } from "@/types/index";
-import { isAxiosError } from "axios";
 
 export async function createProject(formData: ProjectFormData) {
   try {
@@ -26,7 +26,6 @@ export async function getProjects() {
       return response.data;
     }
   } catch (error) {
-    console.error(error);
     if (isAxiosError(error) && error.response) {
       throw new Error(error.response.data.error);
     }
@@ -38,7 +37,6 @@ export async function getProjectById(projectId: Project["_id"]) {
     const { data } = await api(`/projects/${projectId}`);
     return data;
   } catch (error) {
-    console.error(error);
     if (isAxiosError(error) && error.response) {
       throw new Error(error.response.data.error);
     }
@@ -55,7 +53,6 @@ export async function updateProject({ formData, projectId }: ProjectAPIType) {
     const { data } = await api.put(`/projects/${projectId}`, formData);
     return data;
   } catch (error) {
-    console.error(error);
     if (isAxiosError(error) && error.response) {
       throw new Error(error.response.data.error);
     }
@@ -67,7 +64,6 @@ export async function deleteProject(projectId: Project["_id"]) {
     const { data } = await api.delete(`/projects/${projectId}`);
     return data;
   } catch (error) {
-    console.error(error);
     if (isAxiosError(error) && error.response) {
       throw new Error(error.response.data.error);
     }
