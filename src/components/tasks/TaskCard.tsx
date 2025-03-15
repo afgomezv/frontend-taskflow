@@ -59,6 +59,9 @@ export default function TaskCard({ task }: TaskCardProps) {
                 <button
                   type="button"
                   className="block w-full px-3 py-1 text-sm leading-6 text-left text-gray-900 hover:bg-gray-100 cursor-pointer"
+                  onClick={() =>
+                    navigate(location.pathname + `?viewTask=${task._id}`)
+                  }
                 >
                   Ver Tarea
                 </button>
