@@ -64,7 +64,7 @@ export default function CardProject({ project }: CardProjectProps) {
                   <Menu.Item>
                     <Link
                       to={`/projects/${project._id}`}
-                      className="block px-3 py-1 text-sm leading-6 text-gray-900"
+                      className="block w-full px-3 py-1 text-sm leading-6 text-left text-gray-900 hover:bg-gray-100 cursor-pointer"
                     >
                       Ver Proyecto
                     </Link>
@@ -72,7 +72,7 @@ export default function CardProject({ project }: CardProjectProps) {
                   <Menu.Item>
                     <Link
                       to={`/projects/${project._id}/edit`}
-                      className="block px-3 py-1 text-sm leading-6 text-gray-900"
+                      className="block w-full px-3 py-1 text-sm leading-6 text-left text-gray-900 hover:bg-gray-100 cursor-pointer"
                     >
                       Editar Proyecto
                     </Link>
@@ -80,7 +80,7 @@ export default function CardProject({ project }: CardProjectProps) {
                   <Menu.Item>
                     <button
                       type="button"
-                      className="block px-3 py-1 text-sm leading-6 text-red-500"
+                      className="block w-full px-3 py-1 text-sm leading-6 text-left text-red-500 hover:bg-red-50 cursor-pointer"
                       onClick={() => {
                         mutate(project._id);
                       }}
