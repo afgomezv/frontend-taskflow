@@ -28,7 +28,7 @@ export default function ConfirmAccountView() {
 
   return (
     <>
-      <h1 className="text-5xl font-black text-white">Confirma tu Cuenta</h1>
+      <h1 className="text-5xl font-black text-gray-400">Confirma tu Cuenta</h1>
       <p className="text-2xl font-light text-gray-400 mt-5">
         Ingresa el código que recibiste por el {""}
         <span className=" text-solar-amber font-semibold">
