@@ -33,7 +33,6 @@ export default function TaskModalDetails() {
   const { mutate } = useMutation({
     mutationFn: updateStatus,
     onSuccess: (data) => {
-      console.log(data);
       toast.success(data.message);
       queryClient.invalidateQueries({ queryKey: ["EditProject", projectId] });
       queryClient.invalidateQueries({ queryKey: ["task", taskId] });
@@ -47,6 +46,7 @@ export default function TaskModalDetails() {
     const status = e.target.value as TaskStatus;
     const data = { projectId, taskId, status };
     mutate(data);
+    //navigate(location.pathname, { replace: true });
   };
 
   useEffect(() => {
@@ -107,6 +107,20 @@ export default function TaskModalDetails() {
                     <p className="text-lg text-slate-500 mb-2">
                       Descripción: {data.description}
                     </p>
+                    <p className="text-2xl text-solar-amber font-bold mb-2">
+                      Historial de cambios
+                    </p>
+                    <ul className="list-decimal ml-8">
+                      {data.completedBy.map((activityLog) => (
+                        <li key={activityLog._id}>
+                          <span className="font-semibold text-slate-600">
+                            {statusTranslations[activityLog.status]}
+                          </span>{" "}
+                          por: {activityLog.user.name}
+                        </li>
+                      ))}
+                    </ul>
+
                     <div className="my-5 space-y-3">
                       <label className="font-bold capitalize">
                         Estado Actual: {data.status}
