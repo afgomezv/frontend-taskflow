@@ -2,15 +2,17 @@ import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { getProjects } from "@/api/ProjectApi";
 import CardProject from "@/components/Projects/CardProject";
+import { useAuth } from "@/hooks/useAuth";
 
 export default function DashboardView() {
+  const { data: user, isLoading: authLoading } = useAuth();
   const { data, isLoading } = useQuery({
     queryKey: ["projects"],
     queryFn: getProjects,
   });
 
-  if (isLoading) return <p>Cargando...</p>;
-  if (data)
+  if (isLoading && authLoading) return <p>Cargando...</p>;
+  if (data && user)
     return (
       <>
         <h1 className="text-5xl font-black text-ocean-deep">Mis Proyectos</h1>
@@ -27,7 +29,7 @@ export default function DashboardView() {
         </nav>
         {data.length ? (
           data.map((project) => (
-            <CardProject key={project._id} project={project} />
+            <CardProject key={project._id} project={project} user={user} />
           ))
         ) : (
           <p className="text-center py-20">

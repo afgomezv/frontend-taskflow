@@ -4,14 +4,16 @@ import { toast } from "react-toastify";
 import { Menu, Transition } from "@headlessui/react";
 import { EllipsisVerticalIcon } from "@heroicons/react/20/solid";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { Project } from "@/types/index";
+import { Project, User } from "@/types/index";
 import { deleteProject } from "@/api/ProjectApi";
+import { isManager } from "@/utils/policies";
 
 type CardProjectProps = {
   project: Project;
+  user: User;
 };
 
-export default function CardProject({ project }: CardProjectProps) {
+export default function CardProject({ project, user }: CardProjectProps) {
   const queryClient = useQueryClient();
   const { mutate } = useMutation({
     mutationFn: deleteProject,
@@ -23,6 +25,7 @@ export default function CardProject({ project }: CardProjectProps) {
       toast.error(error.message);
     },
   });
+
   return (
     <>
       <ul
@@ -32,6 +35,17 @@ export default function CardProject({ project }: CardProjectProps) {
         <li className="flex justify-between gap-x-6 px-5 py-6">
           <div className="flex min-w-0 gap-x-4">
             <div className="min-w-0 flex-auto space-y-2">
+              <div>
+                {project.manager === user._id ? (
+                  <p className="font-bold text-xs uppercase bg-ocean-deep/10 text-ocean-deep border-2 border-ocean-deep rounded-lg inline-block py-1 px-5">
+                    Manager
+                  </p>
+                ) : (
+                  <p className="font-bold text-xs uppercase bg-rose-flare/10 text-rose-flare border-2 border-rose-flare rounded-lg inline-block py-1 px-5">
+                    Colaborador
+                  </p>
+                )}
+              </div>
               <Link
                 to={`/projects/${project._id}`}
                 className="text-solar-amber cursor-pointer hover:underline text-3xl font-bold"
@@ -69,25 +83,29 @@ export default function CardProject({ project }: CardProjectProps) {
                       Ver Proyecto
                     </Link>
                   </Menu.Item>
-                  <Menu.Item>
-                    <Link
-                      to={`/projects/${project._id}/edit`}
-                      className="block w-full px-3 py-1 text-sm leading-6 text-left text-gray-900 hover:bg-gray-100 cursor-pointer"
-                    >
-                      Editar Proyecto
-                    </Link>
-                  </Menu.Item>
-                  <Menu.Item>
-                    <button
-                      type="button"
-                      className="block w-full px-3 py-1 text-sm leading-6 text-left text-red-500 hover:bg-red-50 cursor-pointer"
-                      onClick={() => {
-                        mutate(project._id);
-                      }}
-                    >
-                      Eliminar Proyecto
-                    </button>
-                  </Menu.Item>
+                  {isManager(project.manager, user._id) && (
+                    <>
+                      <Menu.Item>
+                        <Link
+                          to={`/projects/${project._id}/edit`}
+                          className="block w-full px-3 py-1 text-sm leading-6 text-left text-gray-900 hover:bg-gray-100 cursor-pointer"
+                        >
+                          Editar Proyecto
+                        </Link>
+                      </Menu.Item>
+                      <Menu.Item>
+                        <button
+                          type="button"
+                          className="block w-full px-3 py-1 text-sm leading-6 text-left text-red-500 hover:bg-red-50 cursor-pointer"
+                          onClick={() => {
+                            mutate(project._id);
+                          }}
+                        >
+                          Eliminar Proyecto
+                        </button>
+                      </Menu.Item>
+                    </>
+                  )}
                 </Menu.Items>
               </Transition>
             </Menu>

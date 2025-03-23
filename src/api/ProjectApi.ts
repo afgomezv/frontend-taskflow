@@ -35,6 +35,7 @@ export async function getProjects() {
 export async function getProjectById(projectId: Project["_id"]) {
   try {
     const { data } = await api(`/projects/${projectId}`);
+
     return data;
   } catch (error) {
     if (isAxiosError(error) && error.response) {
