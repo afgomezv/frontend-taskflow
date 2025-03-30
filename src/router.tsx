@@ -1,17 +1,20 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AppLayout from "@/layouts/AppLayout";
-import DashboardView from "@/views/DashboardView";
-import CreateProjectView from "./views/CreateProjectView";
-import EditProjectView from "./views/EditProjectView";
-import ProjectDetailsView from "./views/ProjectDetailsView";
 import AuthLayout from "./layouts/AuthLayout";
-import LoginView from "./views/LoginView";
-import RegisterView from "./views/RegisterView";
-import ConfirmAccountView from "./views/ConfirmAccountView";
-import RequestTokenView from "./views/RequestTokenView";
-import ForgotPasswordView from "./views/ForgotPasswordView";
-import NewPasswordView from "./views/NewPasswordView";
-import ProjectTeamView from "./views/ProjectTeamView";
+import ConfirmAccountView from "./views/auth/ConfirmAccountView";
+import ForgotPasswordView from "./views/auth/ForgotPasswordView";
+import LoginView from "./views/auth/LoginView";
+import NewPasswordView from "./views/auth/NewPasswordView";
+import RegisterView from "./views/auth/RegisterView";
+import RequestTokenView from "./views/auth/RequestTokenView";
+import CreateProjectView from "./views/projects/CreateProjectView";
+import DashboardView from "@/views/projects/DashboardView";
+import EditProjectView from "./views/projects/EditProjectView";
+import ProjectDetailsView from "./views/projects/ProjectDetailsView";
+import ProjectTeamView from "./views/projects/ProjectTeamView";
+import Profileview from "./views/profile/Profileview";
+import ChangePassword from "./views/profile/ChangePassword";
+import ProfileLayout from "./layouts/ProfileLayout";
 
 export default function Router() {
   return (
@@ -29,6 +32,10 @@ export default function Router() {
             path="/projects/:projectId/team"
             element={<ProjectTeamView />}
           />
+          <Route element={<ProfileLayout />}>
+            <Route path="/profile" element={<Profileview />} />
+            <Route path="/profile/password" element={<ChangePassword />} />
+          </Route>
         </Route>
 
         <Route element={<AuthLayout />}>

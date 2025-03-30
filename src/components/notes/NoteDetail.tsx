@@ -2,7 +2,6 @@ import { deleteNote } from "@/api/NoteApi";
 import { useAuth } from "@/hooks/useAuth";
 import { Note } from "@/types/index";
 import { formatDate } from "@/utils/index";
-import { Button } from "@headlessui/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useMemo } from "react";
 import { useLocation, useParams } from "react-router-dom";
