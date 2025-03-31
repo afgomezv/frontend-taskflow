@@ -1,12 +1,10 @@
 import { Fragment } from "react";
-import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, Transition } from "@headlessui/react";
 import { EllipsisVerticalIcon } from "@heroicons/react/20/solid";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Project, User } from "@/types/index";
-import { deleteProject } from "@/api/ProjectApi";
 import { isManager } from "@/utils/policies";
+import DeleteProjectModal from "./DeleteProjectModal";
 
 type CardProjectProps = {
   project: Project;
@@ -14,17 +12,8 @@ type CardProjectProps = {
 };
 
 export default function CardProject({ project, user }: CardProjectProps) {
-  const queryClient = useQueryClient();
-  const { mutate } = useMutation({
-    mutationFn: deleteProject,
-    onSuccess: (data) => {
-      toast.success(data.message);
-      queryClient.invalidateQueries({ queryKey: ["projects"] });
-    },
-    onError: (error) => {
-      toast.error(error.message);
-    },
-  });
+  const location = useLocation();
+  const navigate = useNavigate();
 
   return (
     <>
@@ -98,7 +87,10 @@ export default function CardProject({ project, user }: CardProjectProps) {
                           type="button"
                           className="block w-full px-3 py-1 text-sm leading-6 text-left text-red-500 hover:bg-red-50 cursor-pointer"
                           onClick={() => {
-                            mutate(project._id);
+                            navigate(
+                              location.pathname +
+                                `?deleteProject=${project._id}`
+                            );
                           }}
                         >
                           Eliminar Proyecto
@@ -112,6 +104,7 @@ export default function CardProject({ project, user }: CardProjectProps) {
           </div>
         </li>
       </ul>
+      <DeleteProjectModal />
     </>
   );
 }
