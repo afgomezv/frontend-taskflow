@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { useMutation } from "@tanstack/react-query";
 import { forgotPassword } from "@/api/AuthApi";
 import ErrorMessage from "@/components/ErrorMessage";
-import { ForgotPasswordForm } from "../types";
+import { ForgotPasswordForm } from "@/types/index";
 
 export default function ForgotPasswordView() {
   const initialValues: ForgotPasswordForm = {

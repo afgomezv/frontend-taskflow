@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { PinInput, PinInputField } from "@chakra-ui/pin-input";
 import { useMutation } from "@tanstack/react-query";
 import { confirmAccount } from "@/api/AuthApi";
-import { ConfirmToken } from "../types";
+import { ConfirmToken } from "@/types/index";
 
 export default function ConfirmAccountView() {
   const [token, setToken] = useState<ConfirmToken["token"]>("");

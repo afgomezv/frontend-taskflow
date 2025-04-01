@@ -115,6 +115,8 @@ export const dashboardProjectSchema = z.array(
     clientName: true,
     description: true,
     manager: true,
+    tasks: true,
+    team: true,
   })
 );
 

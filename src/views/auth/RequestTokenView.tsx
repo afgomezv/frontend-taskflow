@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import ErrorMessage from "@/components/ErrorMessage";
-import { RequestConfirmationCodeForm } from "../types";
+
 import { useMutation } from "@tanstack/react-query";
 import { requestToken } from "@/api/AuthApi";
 import { toast } from "react-toastify";
+import { RequestConfirmationCodeForm } from "@/types/index";
 
 export default function RequestTokenView() {
   const initialValues: RequestConfirmationCodeForm = {
