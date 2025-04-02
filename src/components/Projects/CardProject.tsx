@@ -2,12 +2,12 @@ import { Fragment } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, Transition } from "@headlessui/react";
 import { EllipsisVerticalIcon } from "@heroicons/react/20/solid";
-import { Project, User } from "@/types/index";
+import { DashboardProject, User } from "@/types/index";
 import { isManager } from "@/utils/policies";
 import DeleteProjectModal from "./DeleteProjectModal";
 
 type CardProjectProps = {
-  project: Project;
+  project: DashboardProject;
   user: User;
 };
 

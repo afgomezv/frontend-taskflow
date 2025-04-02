@@ -51,7 +51,6 @@ export async function authenticateUser(formData: UserLoginForm) {
   try {
     const url = "/auth/login";
     const { data } = await api.post(url, formData);
-    console.log(data);
     localStorage.setItem("AUTH_TOKEN", data.token);
     return data;
   } catch (error) {

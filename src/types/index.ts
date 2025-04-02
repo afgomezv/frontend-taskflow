@@ -115,8 +115,6 @@ export const dashboardProjectSchema = z.array(
     clientName: true,
     description: true,
     manager: true,
-    tasks: true,
-    team: true,
   })
 );
 
@@ -126,6 +124,10 @@ export const editProjectSchema = projectSchema.pick({
   description: true,
 });
 
+export type DashboardProject = Pick<
+  Project,
+  "_id" | "projectName" | "clientName" | "description" | "manager"
+>;
 export type Project = z.infer<typeof projectSchema>;
 export type ProjectFormData = Pick<
   Project,

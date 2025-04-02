@@ -8,13 +8,14 @@ import NewPasswordView from "./views/auth/NewPasswordView";
 import RegisterView from "./views/auth/RegisterView";
 import RequestTokenView from "./views/auth/RequestTokenView";
 import CreateProjectView from "./views/projects/CreateProjectView";
-import DashboardView from "@/views/projects/DashboardView";
+import DashboardView from "@/views/DashboardView";
 import EditProjectView from "./views/projects/EditProjectView";
 import ProjectDetailsView from "./views/projects/ProjectDetailsView";
 import ProjectTeamView from "./views/projects/ProjectTeamView";
 import Profileview from "./views/profile/Profileview";
 import ChangePassword from "./views/profile/ChangePassword";
 import ProfileLayout from "./layouts/ProfileLayout";
+import NotFound from "./views/404/NotFound";
 
 export default function Router() {
   return (
@@ -51,6 +52,9 @@ export default function Router() {
             element={<ForgotPasswordView />}
           />
           <Route path="/auth/new-password" element={<NewPasswordView />} />
+        </Route>
+        <Route element={<AuthLayout />}>
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>
