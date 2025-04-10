@@ -1,54 +1,86 @@
-# React + TypeScript + Vite
+# 🧩 TaskFlow – Administrador de Proyectos con Roles y Colaboración en Tiempo Real
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**TaskFlow** es una aplicación web avanzada de gestión de proyectos que implementa funcionalidades modernas como autenticación segura, manejo de roles, colaboración en equipo, control detallado de tareas y validaciones en cada paso. Desarrollado con un enfoque profesional y robusto, es ideal para freelancers, equipos de desarrollo y empresas que buscan mantener el control de sus flujos de trabajo.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📌 Descripción del Proyecto
 
-## Expanding the ESLint configuration
+TaskFlow permite a los usuarios:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+✅ Crear cuentas con validación vía correo electrónico.  
+🔐 Confirmar su cuenta usando un token con expiración de seguridad.  
+👤 Iniciar sesión solo tras confirmar la cuenta, protegiendo el sistema de bots.  
+📁 Crear y administrar múltiples proyectos.  
+👥 Asignar colaboradores a proyectos mediante su correo electrónico.  
+🔑 Controlar permisos con un sistema de roles personalizado (Manager vs Colaborador).  
+📌 Crear tareas y gestionarlas a través de cinco estados personalizados:  
+   - Pendiente  
+   - En espera  
+   - En progreso  
+   - En revisión  
+   - Completado  
+🧲 Utilizar **drag and drop** para mover tareas entre estados.  
+📜 Ver historial detallado de cambios por tarea (quién hizo qué y cuándo).  
+📝 Añadir notas colaborativas a cada tarea.  
+👤 Editar el perfil del usuario (nombre, email, contraseña).  
+🧨 Eliminar proyectos solo con validación de contraseña para evitar acciones accidentales.  
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+---
+
+## 🧠 Fundamentos de Desarrollo Aplicados
+
+Este proyecto fue construido bajo principios sólidos de desarrollo de software y buenas prácticas:
+
+- ✨ **TypeScript Fullstack**: Seguridad de tipos en frontend y backend.
+- 🔁 **Validación exhaustiva** en ambos lados con formularios reactivos.
+- 🔐 **Autenticación segura** con tokens, expiraciones y doble verificación.
+- 🎭 **Gestión de roles** para un control claro de permisos.
+- ⚠️ **Feedback y control de errores** en cada paso.
+- 📚 **Historial de acciones y auditoría** para trazabilidad completa.
+- 🧩 **Arquitectura modular y escalable**, usando principios como **SRP** (Single Responsibility Principle).
+- 📦 Pensado para escalar a múltiples usuarios, equipos y proyectos.
+
+---
+
+## 🛠️ Tecnologías y Herramientas Utilizadas
+
+| 🛠 Tecnología        | 💡 Descripción                                                                 |
+|----------------------|------------------------------------------------------------------------------|
+| **Next.js**           | Framework React para frontend moderno.                                       |
+| **TypeScript**        | Tipado estático en todo el proyecto.                                        |
+| **Tailwind CSS**      | Estilos modernos y responsivos con utilidades.                             |
+| **React Hook Form**   | Formularios controlados con gran rendimiento.                              |
+| **Zod**               | Validación de esquemas segura para formularios y APIs.                      |
+| **React Query**       | Manejo de datos eficiente con caché, sincronización y actualizaciones.      |
+| **Node.js + Express** | Backend robusto para la API REST.                                           |
+| **MongoDB**           | Base de datos NoSQL flexible y escalable.                                   |
+| **Mongoose**          | ODM para modelado de datos en MongoDB.                                      |
+| **Nodemailer**        | Envío de correos para confirmación de cuenta.                               |
+| **JWT**               | Tokens seguros para autenticación persistente.                             |
+| **Bcrypt.js**         | Encriptación de contraseñas.                                                |
+
+---
+
+## 🚀 Cómo levantar el proyecto localmente
+
+### 1. Clonar el repositorio
+
+```bash
+git clone https://github.com/afgomezv/frontend-taskflow.git
+cd frontend-taskflow
+```
+### 2. Instalar dependencias
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 3. Renombra el archivo `.env.template` en `.env` y configurar variables de entorno.
+```bash
+VITE_API_URL=http://localhost:4000/api
+````
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+### 4. Ejecutar el servidor en desarrollo
+```bash
+npm run dev
 ```
